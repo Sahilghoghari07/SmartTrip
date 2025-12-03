@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home - SmartTrip</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" href="/img/icon.jpg">
+    <style>
+        .bg-image {
+            background: url('/img/home_cover.jpg') no-repeat center center;
+            background-size: cover;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        /* Overlay Effect */
+        .bg-overlay {
+            background: rgba(0, 0, 0, 0.5);
+            /* Dark overlay */
+            padding: 50px;
+            border-radius: 10px;
+        }
+
+        /* Travel Search Section */
+        .travel-search {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            position: relative;
+            width: 100%;
+            bottom: 0;
+        }
+
+        /* card slider */
+        .slide-container {
+            max-width: 1120px;
+            width: 100%;
+            padding: 40px 0;
+        }
+
+        .slide-container h4,
+        .category h4 {
+            color: gray;
+            text-align: center;
+        }
+
+        .slide-container h2,
+        .category h2 {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .category img {
+            margin: auto;
+        }
+
+        .category .card {
+            padding: 20px;
+        }
+
+        .category .card p {
+            color: gray;
+        }
+
+        .slide-content {
+            margin: 0 40px;
+            overflow: hidden;
+            border-radius: 25px;
+        }
+
+        .card {
+            border-radius: 25px;
+            background-color: #FFF;
+        }
+
+        .image-content,
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 14px;
+        }
+
+        .image-content {
+            position: relative;
+            row-gap: 5px;
+            padding: 25px 0;
+        }
+
+        .overlay {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background-color: #4070F4;
+            border-radius: 25px 25px 0 25px;
+        }
+
+        .overlay::before,
+        .overlay::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: -40px;
+            height: 40px;
+            width: 40px;
+            background-color: #4070F4;
+        }
+
+        .overlay::after {
+            border-radius: 0 25px 0 0;
+            background-color: #FFF;
+        }
+
+        .card-image {
+            position: relative;
+            height: 150px;
+            width: 150px;
+            border-radius: 50%;
+            background: #FFF;
+            padding: 3px;
+        }
+
+        .card-image .card-img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #4070F4;
+        }
+
+        .name {
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .description {
+            font-size: 14px;
+            color: #707070;
+            text-align: center;
+        }
+
+        .button {
+            border: none;
+            font-size: 16px;
+            color: #FFF;
+            padding: 8px 16px;
+            background-color: #4070F4;
+            border-radius: 6px;
+            margin: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background: #265DF2;
+        }
+
+        .swiper-navBtn {
+            color: #6E93f7;
+            transition: color 0.3s ease;
+        }
+
+        .swiper-navBtn:hover {
+            color: #4070F4;
+        }
+
+        .swiper-navBtn::before,
+        .swiper-navBtn::after {
+            font-size: 35px;
+        }
+
+        .swiper-button-next {
+            right: 0;
+        }
+
+        .swiper-button-prev {
+            left: 0;
+        }
+
+        .swiper-pagination-bullet {
+            background-color: #6E93f7;
+            opacity: 1;
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: #4070F4;
+        }
+
+        @media screen and (max-width: 768px) {
+            .slide-content {
+                margin: 0 10px;
+            }
+
+            .swiper-navBtn {
+                display: none;
+            }
+        }
+
+        /* logo slider */
+        .logo-container {
+            width: 100%;
+            overflow: hidden;
+            /* background: white; */
+            padding: 20px 0;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .logo-track {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            animation: scroll 15s linear infinite;
+        }
+
+        .logo-track img {
+            width: 100px;
+            height: auto;
+            margin-right: 50px;
+            object-fit: contain;
+        }
+
+        @keyframes scroll {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        .container-fluid img {
+            width: 100%;
+            position: absolute;
+        }
+        .container-fluid i {
+            font-size: 30px;
+            padding-bottom: 15px;
+        }
+        .container-fluid .card-group {
+            position: relative;
+            padding-top: 150px;
+            padding-bottom: 120px;
+        }
+        #img-other {
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        #card-other {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 50px;
+            border-radius: 10px;
+        }
+
+        .travel-search{
+            border-radius: 50px;
+        }
+        #book .btn{
+            border-radius: 50px;
+            padding: 10px;
+        }
+        #book input{
+            background-color: #e8f0fe;
+            border-radius: 50px;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER (Navbar) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <h2><a class="navbar-brand-lg text-light text-decoration-none" href="#">SmartTrip</a></h2>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="/user/index">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/user/weather">Weather Forcast</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/user/destinations">Destinations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/user/bookings">Bookings</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/user/contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/user/profile">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-danger text-white px-3" href="/user/logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="bg-image">
+        <div class="bg-overlay">
+            <h1>Welcome to Smart Travel Planner</h1>
+            <p>Plan your journey with ease and discover amazing destinations.</p>
+        </div>
+    </div>
+
+    <!-- TRAVEL SEARCH FORM -->
+    <div class="container mt-5 mb-5" id="book">
+        <div class="travel-search p-4">
+            <h3 class="text-center mb-3">Plan Your Trip With SmartTrip</h3>
+            <form action="/user/index" method="post">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label class="form-label">Source</label>
+                        <input type="text" class="form-control" name="source" placeholder="Enter source" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Destination</label>
+                        <input type="text" class="form-control" name="destination" placeholder="Enter destination"
+                            required>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Date</label>
+                        <input type="date" class="form-control" name="date" id="date" required>
+                    </div>
+                    <script>
+                        let today = new Date().toISOString().split('T')[0];
+                        document.getElementById("date").setAttribute("min", today);
+                    </script>
+                    <div class="col-md-2">
+                        <label class="form-label">Person</label>
+                        <input type="number" class="form-control" name="person" min="1" value="1" required>
+                    </div>
+                    <div class="col-md-1 d-flex align-items-end">
+                        <button type="submit" name="btnsearch" class="btn btn-primary w-100">GO</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="category">
+            <h4>CATEGORY</h4>
+            <h2 class="mb-3">We Offer Best</h2>
+            <div class="card-group mb-5">
+                <div class="card">
+                    <img src="/img/c1.jpg" height="60" width="70">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Calculated Weather</h5>
+                        <p class="card-text">Our Calculated Weather feature provides real-time weather insights for your
+                            travel destinations. It dynamically fetches and displays temperature, humidity, and
+                            conditions based on your selected location.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="/img/c2.jpg" height="60" width="70">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Best Flights</h5>
+                        <p class="card-text">Discover the best flight deals with our smart travel planner. Compare
+                            prices, find the fastest routes, and book your perfect trip hassle-free. Whether you're
+                            planning a vacation or a business trip, we help you fly smarter and save more!</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="/img/c3.jpg" height="70" width="40">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Local Events</h5>
+                        <p class="card-text">We bring you the latest updates on what’s happening near you. Stay
+                            informed, plan your outings, and never miss out on amazing local experiences.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="/img/c4.jpg" height="60" width="60">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Customization</h5>
+                        <p class="card-text">Our website offers seamless customization options to enhance your
+                            experience. Whether it's modifying layouts, adjusting styles, or adding personalized
+                            features, we provide flexible solutions to meet your needs. Enjoy a user-friendly interface
+                            with tailored designs that reflect your unique preferences.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid p-0 mt-3 mb-3">
+        <img src="/img/home_map.jpg" alt="" id="img-other">
+        <div class="container">
+            <div class="card-group mb-5">
+                <div class="card p-3 mx-2"  id="card-other">
+                    <div class="card-body text-center">
+                        <i class="fa-solid fa-route"></i>
+                        <h3 class="card-title">200+</h3>
+                        <h5 class="card-text">Total Destinations</h5>
+                    </div>
+                </div>
+                <div class="card p-3 mx-2"  id="card-other">
+                    <div class="card-body text-center">
+                        <i class="fas fa-smile"></i>
+                        <h3 class="card-title">100+</h3>
+                        <h5 class="card-text">Happy People</h5>
+                    </div>
+                </div>
+                <div class="card p-3 mx-2"  id="card-other">
+                    <div class="card-body text-center">
+                        <i class="fa-solid fa-medal"></i>
+                        <h3 class="card-title">30+</h3>
+                        <h5 class="card-text">Awards Won</h5>
+                    </div>
+                </div>
+                <div class="card p-3 mx-2"  id="card-other">
+                    <div class="card-body text-center">
+                        <i class="fa-solid fa-umbrella-beach"></i>
+                        <h3 class="card-title">50+</h3>
+                        <h5 class="card-text">Stunning Places</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- card slider -->
+    <div class="slide-container swiper mb-5">
+        <h4>TOP SELLING</h4>
+        <h2 class="mb-3">Top Destinations</h2>
+        <div class="slide-content">
+            <div class="card-wrapper swiper-wrapper">
+                <div class="card swiper-slide">
+                    <div class="image-content">
+                        <span class="overlay"></span>
+                        <div class="card-image">
+                            <img src="/img/home1.jpg" alt="" class="card-img">
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="name">Goa</h3>
+                        <p class="description">India's beach paradise, is known for its golden shores, vibrant
+                            nightlife, rich Portuguese heritage, and laid-back vibe. A perfect blend of adventure and
+                            relaxation!</p>
+                        <a href="/user/destinations"><button class="button">View More</button></a>
+                    </div>
+                </div>
+                <div class="card swiper-slide">
+                    <div class="image-content">
+                        <span class="overlay"></span>
+                        <div class="card-image">
+                            <img src="/img/home2.jpg" alt="" class="card-img">
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="name">Bali</h3>
+                        <p class="description">Indonesia’s tropical gem, is famed for its lush rice terraces, stunning
+                            beaches, vibrant culture, and spiritual retreats. A perfect escape for nature, adventure,
+                            and relaxation! </p>
+                        <a href="/user/destinations"><button class="button">View More</button></a>
+                    </div>
+                </div>
+                <div class="card swiper-slide">
+                    <div class="image-content">
+                        <span class="overlay"></span>
+                        <div class="card-image">
+                            <img src="/img/home3.jpg" alt="" class="card-img">
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="name">Dubai</h3>
+                        <p class="description">Dubai dazzles with its futuristic skyline, luxury shopping, desert
+                            adventures, and world-class attractions like the Burj Khalifa and Palm Jumeirah. A blend of
+                            tradition and innovation!</p>
+                        <a href="/user/destinations"><button class="button">View More</button></a>
+                    </div>
+                </div>
+                <div class="card swiper-slide">
+                    <div class="image-content">
+                        <span class="overlay"></span>
+                        <div class="card-image">
+                            <img src="/img/home4.jpg" alt="" class="card-img">
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="name">Taj Mahal</h3>
+                        <p class="description">A breathtaking white marble mausoleum in Agra, India, stands as a
+                            testament to eternal love. it is a UNESCO World Heritage Site and one of the Seven Wonders
+                            of the World.</p>
+                        <a href="/user/destinations"><button class="button">View More</button></a>
+                    </div>
+                </div>
+                <div class="card swiper-slide">
+                    <div class="image-content">
+                        <span class="overlay"></span>
+                        <div class="card-image">
+                            <img src="/img/home5.jpg" alt="" class="card-img">
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="name">Kashmir</h3>
+                        <p class="description">With its breathtaking valleys, snow-capped mountains, and serene lakes,
+                            is a dream destination. Experience its heavenly beauty, rich culture, and warm hospitality!
+                        </p>
+                        <a href="/user/destinations"><button class="button">View More</button></a>
+                    </div>
+                </div>
+                <div class="card swiper-slide">
+                    <div class="image-content">
+                        <span class="overlay"></span>
+                        <div class="card-image">
+                            <img src="/img/home6.jpg" alt="" class="card-img">
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="name">Rajasthan</h3>
+                        <p class="description">India’s majestic desert state, is known for its grand palaces, towering
+                            forts, vibrant culture, and timeless traditions. A journey through history and heritage!</p>
+                        <a href="/user/destinations"><button class="button">View More</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-button-next swiper-navBtn"></div>
+        <div class="swiper-button-prev swiper-navBtn"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".slide-content", {
+            slidesPerView: 3,
+            spaceBetween: 25,
+            loop: true,
+            centerSlide: 'true',
+            fade: 'true',
+            grabCursor: 'true',
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                dynamicBullets: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                },
+                520: {
+                    slidesPerView: 2,
+                },
+                950: {
+                    slidesPerView: 3,
+                },
+            },
+        });
+    </script>
+
+    <!-- logo slider -->
+    <div class="logo-container">
+        <div class="logo-track">
+            <img src="/img/logo1.jpg" alt="">
+            <img src="/img/logo2.jpg" alt="">
+            <img src="/img/logo3.jpg" alt="">
+            <img src="/img/logo4.jpg" alt="">
+            <img src="/img/logo5.jpg" alt="">
+            <img src="/img/logo6.jpg" alt="">
+            <img src="/img/logo7.jpg" alt="">
+            <img src="/img/logo8.jpg" alt="">
+            <img src="/img/logo9.jpg" alt="">
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const track = document.querySelector(".logo-track");
+            const clone = track.innerHTML;
+            // Duplicate logos for smooth infinite scroll effect
+            track.innerHTML += clone;
+        });
+    </script>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-4 mb-5 mt-5">
+                    <img src="/img/icon_full.jpg" alt="Logo" width="200" class="mb-2">
+                    <h4>Smart Travel Planner</h4>
+                </div>
+                <div class="col-md-4 mb-5 mt-5">
+                    <h4>Quick Links</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="/user/index" class="text-light text-decoration-none">Home</a></li>
+                        <li><a href="/user/destinations" class="text-light text-decoration-none">Destinations</a></li>
+                        <li><a href="/user/about" class="text-light text-decoration-none">About Us</a></li>
+                        <li><a href="/user/contact" class="text-light text-decoration-none">Contact</a></li>
+                        <li><a href="/user" class="text-light text-decoration-none">Logout</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-5 mt-5">
+                    <h4>Follow Us On</h4>
+                    <a href="https://www.facebook.com/" class="text-light mx-2"><i class="bi bi-facebook"></i></a>
+                    <a href="https://x.com/" class="text-light mx-2"><i class="bi bi-twitter"></i></a>
+                    <a href="https://www.instagram.com/" class="text-light mx-2"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+            <div class="mt-3">
+                <p class="mb-3">&copy;2025 SmartTrip. All Rights Reserved.</p>
+            </div>
+        </div>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    </footer>
+
+</body>
+
+</html>

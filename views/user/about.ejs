@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - SmartTrip</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" href="./img/icon.jpg">
+    <style>
+        /* Footer */
+        footer {
+            position: relative;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .hero {
+            background: url('/img/about_cover.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 100px 50px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+        }
+
+        .section {
+            padding: 70px 20px;
+        }
+
+        .team img {
+            border-radius: 50%;
+            height: 100px;
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER (Navbar) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <h2><a class="navbar-brand-lg text-light text-decoration-none" href="#">SmartTrip</a></h2>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/user/index">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/user/weather">Weather Forcast</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/user/destinations">Destinations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/user/bookings">Bookings</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/user/contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/user/profile">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-danger text-white px-3" href="/user/logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="hero">
+        <h1>About Us</h1>
+        <h5>Your perfect trip planner to explore the world seamlessly.</h5>
+    </div>
+
+    <div class="container section">
+        <div class="row text-center">
+            <div class="col-md-6">
+                <h2>Our Mission</h2>
+                <p>To provide travelers with smart and efficient planning solutions for an unforgettable journey.</p>
+            </div>
+            <div class="col-md-6">
+                <h2>Our Vision</h2>
+                <p>To be the leading travel planner that simplifies trip management with technology.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="team">
+        <div class="container section text-center">
+            <h2>Meet Our Team</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-3">
+                    <img src="/img/default_avtar.jpg" alt="">
+                    <h5>Sahil Ghoghari</h5>
+                    <p>Founder & CEO</p>
+                </div>
+                <div class="col-md-3">
+                    <img src="/img/default_avtar.jpg" alt="">
+                    <h5>Vivek Sarvaiya</h5>
+                    <p>Founder & CEO</p>
+                </div>
+                <div class="col-md-3">
+                    <img src="/img/default_avtar.jpg" alt="">
+                    <h5>Dhruvi Unagar</h5>
+                    <p>Chief Marketing Officer</p>
+                </div>
+                <div class="col-md-3">
+                    <img src="/img/default_avtar.jpg" alt="">
+                    <h5>Hensi Kalathiya</h5>
+                    <p>Sales Officer</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-4 mb-5 mt-5">
+                    <img src="/img/icon_full.jpg" alt="Logo" width="200" class="mb-2">
+                    <h4>Smart Travel Planner</h4>
+                </div>
+                <div class="col-md-4 mb-5 mt-5">
+                    <h4>Quick Links</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="/user/index" class="text-light text-decoration-none">Home</a></li>
+                        <li><a href="/user/destinations" class="text-light text-decoration-none">Destinations</a></li>
+                        <li><a href="/user/about" class="text-light text-decoration-none">About Us</a></li>
+                        <li><a href="/user/contact" class="text-light text-decoration-none">Contact</a></li>
+                        <li><a href="/user" class="text-light text-decoration-none">Logout</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-5 mt-5">
+                    <h4>Follow Us On</h4>
+                    <a href="https://www.facebook.com/" class="text-light mx-2"><i class="bi bi-facebook"></i></a>
+                    <a href="https://x.com/" class="text-light mx-2"><i class="bi bi-twitter"></i></a>
+                    <a href="https://www.instagram.com/" class="text-light mx-2"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+            <div class="mt-3">
+                <p class="mb-3">&copy;2025 SmartTrip. All Rights Reserved.</p>
+            </div>
+        </div>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    </footer>
+
+</body>
+
+</html>

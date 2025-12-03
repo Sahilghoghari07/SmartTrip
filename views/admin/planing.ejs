@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" href="/img/icon.jpg">
+    <title>Admin Package Planning - SmartTrip</title>
+    <style>
+        /* Footer */
+        footer {
+            position: relative;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .preview-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin: 5px;
+            border: 1px solid #ddd;
+            padding: 5px;
+        }
+        .hero-section h2 {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 30px 80px;
+            border-radius: 20px;
+            font-size: 4vh;
+            font-weight: bold;
+        }
+
+        .hero-section {
+            background: url('/img/package.jpg') center;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+     <!-- header -->
+     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <h2><a class="navbar-brand-lg text-light text-decoration-none" href="#">SmartTrip</a></h2>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link " href="/admin/home">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/admin/userdata">Users</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/admin/planing">Planning</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/admin/displayplans">Packages</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/admin/bookings">Bookings</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/admin/vendordata">Vendors</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/admin/propertydata">Properties</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-danger text-white px-3" href="/admin/logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="hero-section text-center">
+        <h2>Package Planning</h2>
+    </div>
+    <form action="/admin/planing" method="post" enctype="multipart/form-data" onsubmit="return confirm('Package Created Successful!')">
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card p-4">
+                        <div class="card p-3 mt-3">
+                            <h6><b>Uploaded Images</b></h6>
+                            <div id="imagePreview" class="d-flex">
+                                <img src="" class="preview-img">
+                                <img src="" class="preview-img">
+                            </div>
+                            <input type="file" id="imageUpload" name="images" class="form-control mt-2" multiple>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Place Name</label>
+                                <input type="text" name="placename" class="form-control" placeholder="Enter place name">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Description</label>
+                                <textarea name="description" placeholder="Enter product description" rows="3"
+                                    class="form-control"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">Country</label>
+                                <input type="text" name="country" class="form-control" placeholder="Enter country"
+                                    required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">State</label>
+                                <input type="text" name="state" class="form-control" placeholder="Enter state" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">City</label>
+                                <input type="text" name="city" class="form-control" placeholder="Enter city" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">Price</label>
+                                <input type="text" name="price" class="form-control" placeholder="Enter price" required>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="row">
+                            <h5>Days Planning</h5>
+                            <div id="input-container">
+                                <div class="input-group mb-2">
+                                    <input type="text" name="day[]" class="form-control" placeholder="Enter day (E.g.1)"
+                                        required>
+                                    <input type="text" name="plan[]" class="form-control" placeholder="Enter place"
+                                        required>
+                                    <button class="btn btn-outline-danger" type="button"
+                                        onclick="removeField(this)">❌</button>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-outline-success w-80" onclick="addField(event)">Add Day</button>
+                            <script>
+                                function addField(event) {
+                                    event.preventDefault(); // Prevent form submission
+                                    let container = document.getElementById("input-container");
+                                    let newField = document.createElement("div");
+                                    newField.classList.add("input-group", "mb-2");
+                                    newField.innerHTML = `
+                                        <input type="text" class="form-control" name="day[]" placeholder="Enter day" required>
+                                        <input type="text" class="form-control" name="plan[]" placeholder="Enter plan" required>
+                                        <button class="btn btn-outline-danger" type="button" onclick="removeField(this)">❌</button>
+                                    `;
+                                    container.appendChild(newField);
+                                }
+                                function removeField(button) {
+                                    button.parentElement.remove(); // Remove the selected row
+                                }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="mt-4 d-flex justify-content-between">
+                <a href="/admin/home" class="btn btn-light">Discard And Go Back</a>
+                <button type="submit" class="btn btn-primary">Submit Request</button>
+            </div>
+        </div>
+        <script>
+            // Image Preview Functionality
+            document.getElementById("imageUpload").addEventListener("change", function (event) {
+                let imagePreview = document.getElementById("imagePreview");
+                imagePreview.innerHTML = "";
+                for (let file of event.target.files) {
+                    let reader = new FileReader();
+                    reader.onload = function (e) {
+                        let img = document.createElement("img");
+                        img.src = e.target.result;
+                        img.className = "preview-img";
+                        imagePreview.appendChild(img);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        </script>
+    </form>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-light py-2 mt-5">
+        <div class="container text-center">
+            <div class="mb-5 mt-5">
+                <img src="/img/icon_full.jpg" alt="Logo" width="200">
+            </div>
+            <div class="mt-3">
+                <p>&copy;2025 SmartTrip. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

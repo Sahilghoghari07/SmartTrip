@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Packages - SmartTrip</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="/img/icon.jpg">
+    <style>
+        /* Footer */
+        footer {
+            position: relative;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .product-card {
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: scale(1.03);
+        }
+
+        .product-image {
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .status {
+            font-weight: bold;
+        }
+
+        .filter-container {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .hero-section h2 {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 30px 80px;
+            border-radius: 20px;
+            font-size: 4vh;
+            font-weight: bold;
+        }
+
+        .hero-section {
+            background: url('/img/package.jpg') center;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .description {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+  <!-- header -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <h2><a class="navbar-brand-lg text-light text-decoration-none" href="#">SmartTrip</a></h2>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link " href="/admin/home">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="/admin/userdata">Users</a></li>
+                <li class="nav-item"><a class="nav-link" href="/admin/planing">Planning</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/admin/displayplans">Packages</a></li>
+                <li class="nav-item"><a class="nav-link" href="/admin/bookings">Bookings</a></li>
+                <li class="nav-item"><a class="nav-link" href="/admin/vendordata">Vendors</a></li>
+                <li class="nav-item"><a class="nav-link" href="/admin/propertydata">Properties</a></li>
+                <li class="nav-item"><a class="nav-link btn btn-danger text-white px-3" href="/admin/logout">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <!-- Page Content -->
+    <div class="hero-section text-center">
+        <h2>Available Packages</h2>
+    </div>
+    <div class="container mt-4">
+        <% if (plans.length> 0) { %>
+            <div class="row">
+                <% plans.forEach((plan, planIndex)=> { %>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div id="carousel<%= planIndex %>" class="carousel slide" data-bs-ride="carousel"
+                                data-bs-interval="3000">
+                                <div class="carousel-inner">
+                                    <% if (plan.images && plan.images.length> 0) { %>
+                                        <% plan.images.forEach((image, index)=> { %>
+                                            <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                                                <img src="/<%= image %>" class="d-block w-100 product-image"
+                                                    alt="Plan Image">
+                                            </div>
+                                            <% }) %>
+                                                <% } else { %>
+                                                    <div class="carousel-item active">
+                                                        <img src="/images/default.jpg"
+                                                            class="d-block w-100 product-image"
+                                                            alt="Default Plan Image">
+                                                    </div>
+                                                    <% } %>
+                                </div>
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carousel<%= planIndex %>" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carousel<%= planIndex %>" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">
+                                    <%= plan.placename %>
+                                </h3>
+                                <p class="text-secondary description">
+                                    <%= plan.description %>
+                                </p>
+                                <a href="javascript:void(0);" class="show-more text-primary"
+                                    style="display: block;">Show More</a>
+                                <script>
+                                    document.addEventListener("DOMContentLoaded", function () {
+                                        document.querySelectorAll(".show-more").forEach(button => {
+                                            button.addEventListener("click", function () {
+                                                let desc = this.previousElementSibling; // Get the description paragraph
+                                                if (desc.style.webkitLineClamp === "3") {
+                                                    desc.style.display = "block"; // Show full text
+                                                    desc.style.webkitLineClamp = "unset"; // Remove line clamping
+                                                    this.textContent = "Show Less";
+                                                } else {
+                                                    desc.style.display = "-webkit-box";
+                                                    desc.style.webkitLineClamp = "3"; // Clamp text to 3 lines
+                                                    this.textContent = "Show More";
+                                                }
+                                            });
+                                        });
+                                    });
+                                </script>
+                                <h3 class="card-text">
+                                    <%= plan.city %>
+                                </h3>
+                                <p><%= plan.days.length %> days</p>
+                                <div class="alert alert-warning">
+                                    <h4 class="card-text price">Rs.<%= plan.price %>/Person
+                                    </h4>
+                                </div>
+                                <a href="/admin/editplans/<%= plan._id %>" class="btn btn-warning col-5">Edit</a>
+                                <form action="/admin/deleteplans/<%= plan._id %>" method="POST" class="d-inline">
+                                    <button type="submit" class="btn btn-danger col-6"
+                                        onclick="return confirm('Are you sure you?')">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+            </div>
+            <% } else { %>
+                <div class="alert alert-warning text-center">No travel packages available.</div>
+                <% } %>
+    </div>
+
+   <!-- FOOTER -->
+   <footer class="bg-dark text-light py-2 mt-5">
+    <div class="container text-center">
+        <div class="mb-5 mt-5">
+            <img src="/img/icon_full.jpg" alt="Logo" width="200">
+        </div>
+        <div class="mt-3">
+            <p>&copy;2025 SmartTrip. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+</body>
+
+</html>
