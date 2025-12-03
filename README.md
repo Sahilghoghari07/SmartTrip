@@ -83,7 +83,14 @@ Server will run on
 ---
 
 ## 📸 Screenshots
-Add screenshots of your UI here later.
+<img width="487" height="248" alt="image" src="https://github.com/user-attachments/assets/dcf7c901-bcd2-4cc0-97fa-ac4e5b4ec771" />
+
+<img width="509" height="284" alt="image" src="https://github.com/user-attachments/assets/f90e0634-88fc-47cd-bff7-e2c623ed0ab6" />
+
+<img width="541" height="235" alt="image" src="https://github.com/user-attachments/assets/e6fa0d54-2922-4feb-b4b9-5cffc5417a2f" />
+
+
+
 
 ---
 
