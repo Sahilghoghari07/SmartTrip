@@ -1,0 +1,98 @@
+# SmartTrip – Smart Travel Planner 🌍✈️
+
+SmartTrip is the trip-planning web application designed to help users create smart, optimized, and personalized travel plans.  
+It provides weather-based suggestions, category-wise destination browsing, and recommendations to make travel easier and smarter.
+
+---
+
+## 🚀 Features
+
+### 🧠 AI-Powered Trip Planning
+- Generate trip ideas instantly.
+- Smart suggestions based on user preferences.
+- Budget-friendly travel planning.
+
+### 🌦️ Live Weather-Based Recommendations
+- Auto-calculate weather for selected destinations.
+
+### 🗂️ Category-Based Destination Browsing
+- Explore destinations by category:
+  - Beaches
+  - Mountains
+  - Adventure
+  - Historical
+  - Family travel
+  - And more…
+
+### 👤 User Panel
+- Create and manage travel plans.
+- Update profile details.
+- Recommended destinations section.
+
+### 📱 Fully Responsive UI
+- Modern interface with HTML, CSS & Bootstrap.
+- Smooth transitions & user-friendly layout.
+
+---
+
+## 🛠️ Tech Stack
+
+**Frontend**
+- HTML  
+- CSS  
+- Bootstrap  
+- JavaScript  
+
+**Backend**
+- Node.js  
+- Express.js  
+
+**Database**
+- MongoDB  
+
+---
+
+## 📁 Project Structure
+
+SmartTrip/
+│── public/ # CSS, JS, Images
+│── views/ # EJS Templates
+│── routes/ # Express Routes
+│── controllers/ # Controller Files
+│── models/ # MongoDB Models
+│── config/ # DB Configurations
+│── .gitignore
+│── package.json
+│── README.md
+│── app.js # Main Server File
+---
+
+## 🚀 How to Run Locally
+
+### 1. Clone the Repository
+
+### 2. Install Dependencies
+
+### 3. Set Up Environment Variables  
+Create a `.env` file and add:
+
+### 4. Start the Server
+
+Server will run on  
+
+---
+
+## 📸 Screenshots
+Add screenshots of your UI here later.
+
+---
+
+## 🤝 Contributing
+Feel free to connect.
+LinkdIn - www.linkedin.com/in/sahil-ghoghari
+
+---
+
+## 💡 Developer
+**Sahil Ghoghari**  
+SmartTrip – Travel Planner  
