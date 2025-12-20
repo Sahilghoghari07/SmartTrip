@@ -1,13 +1,13 @@
-# SmartTrip – Smart Travel Planner 🌍✈️
+# Trip Planner 🌍✈️
 
-SmartTrip is the trip-planning web application designed to help users create smart, optimized, and personalized travel plans.  
+Trip-planning web application designed to help users create smart, optimized, and personalized travel plans.  
 It provides weather-based suggestions, category-wise destination browsing, and recommendations to make travel easier and smarter.
 
 ---
 
 ## 🚀 Features
 
-### 🧠 AI-Powered Trip Planning
+### 🧠 Trip Planning
 - Generate trip ideas instantly.
 - Smart suggestions based on user preferences.
 - Budget-friendly travel planning.
@@ -54,7 +54,7 @@ It provides weather-based suggestions, category-wise destination browsing, and r
 
 ## 📁 Project Structure
 
-SmartTrip/
+Trip-Planning/
 │── public/ # CSS, JS, Images
 │── views/ # EJS Templates
 │── routes/ # Express Routes
